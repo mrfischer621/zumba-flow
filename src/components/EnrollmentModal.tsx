@@ -114,23 +114,15 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
   const toggleDate = (date: Date) => {
     setSelectedDates((prev) => {
       const exists = prev.some((d) => d.getTime() === date.getTime());
-      return exists ? prev.filter((d) => d.getTime() !== date.getTime()) : [...prev, date];
+      return exists ? [] : [date];
     });
   };
 
-  const selectAll = () => {
-    setSelectedDates(
-      selectedDates.length === availableThursdays.length ? [] : [...availableThursdays]
-    );
-  };
-
   const handleWhatsAppEnroll = () => {
-    const sorted = [...selectedDates].sort((a, b) => a.getTime() - b.getTime());
-    const dateList = sorted
-      .map((d) => format(d, "EEEE, d. MMMM yyyy", { locale: de }))
-      .join("\n- ");
+    const date = selectedDates[0];
+    const dateStr = format(date, "EEEE, d. MMMM yyyy", { locale: de });
 
-    const message = `Hallo Katja! Ich möchte mich für folgende Zumba® Kurse anmelden.\n\nName: ${name.trim()}\n\nTermine:\n- ${dateList}`;
+    const message = `Hallo Katja! Ich möchte die Probelektion buchen.\n\nName: ${name.trim()}\nWunschtermin: ${dateStr}`;
 
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/41772325777?text=${encoded}`, "_blank", "noopener,noreferrer");
@@ -174,10 +166,10 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
             <div className="gradient-zumba-party p-5 flex items-center justify-between flex-shrink-0">
               <div>
                 <h3 className="text-primary-foreground font-display font-bold text-xl">
-                  {step === "dates" ? "Zumba® Anmeldung" : "Anmeldung abgeschlossen"}
+                  {step === "dates" ? "Probelektion buchen" : "Anfrage abgeschickt!"}
                 </h3>
                 {step === "dates" && (
-                  <p className="text-primary-foreground/80 text-sm">Donnerstag, 19:00 – 19:55</p>
+                  <p className="text-primary-foreground/80 text-sm">Donnerstag, 19:00 bis 19:55 · CHF 10</p>
                 )}
               </div>
               <button
@@ -208,7 +200,7 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
                       WhatsApp wurde geöffnet!
                     </h4>
                     <p className="text-muted-foreground text-sm mt-1 mb-6">
-                      Sende die Nachricht ab, um deine Anmeldung abzuschliessen.
+                      Sende die Nachricht ab. Katja meldet sich bei dir.
                     </p>
                     <button
                       onClick={handleCalendarExport}
@@ -246,21 +238,13 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
                       />
                     </div>
 
-                    <div className="flex items-center justify-between px-5 pt-3 pb-2 flex-shrink-0">
-                      <div>
-                        <p className="text-sm text-muted-foreground">
-                          Wähle einen oder mehrere Donnerstage:
-                        </p>
-                        <p className="text-xs text-muted-foreground/70 mt-1">
-                          Flaacher Schulferien und Feiertage ausgenommen
-                        </p>
-                      </div>
-                      <button
-                        onClick={selectAll}
-                        className="text-xs font-medium text-primary hover:text-primary/80 transition-colors"
-                      >
-                        {selectedDates.length === availableThursdays.length ? "Keine" : "Alle"}
-                      </button>
+                    <div className="px-5 pt-3 pb-2 flex-shrink-0">
+                      <p className="text-sm text-muted-foreground">
+                        Wähle deinen Wunschtermin:
+                      </p>
+                      <p className="text-xs text-muted-foreground/70 mt-1">
+                        Schulferien und Feiertage ausgenommen
+                      </p>
                     </div>
                     <div className="space-y-2 overflow-y-auto px-5 pb-2 flex-1 min-h-0">
                       {availableThursdays.map((date) => {

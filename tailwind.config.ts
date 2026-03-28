@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ['Poppins', 'sans-serif'],
         body: ['Nunito', 'sans-serif'],
+        handwritten: ['Give You Glory', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -65,7 +65,7 @@ const ContactSection = () => {
               <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-glow">
                 <img
                   src={katjaProfile}
-                  alt="Katja Zumsteg – Zumba® Instructorin"
+                  alt="Katja Zumsteg, Zumba® Instructorin"
                   className="w-full h-full object-cover scale-[1.3]"
                   style={{ objectPosition: "50% 20%" }}
                 />
@@ -74,7 +74,7 @@ const ContactSection = () => {
 
             <h3 className="text-2xl font-bold font-heading text-center md:text-left">Katja Zumsteg</h3>
             <p className="text-muted-foreground text-center md:text-left">
-              Zumba® und Les Mills® Dance Instruktorin – Ich freue mich auf dich! Bis bald auf dem Dancefloor. 💃🕺
+              Zumba® und Les Mills® Dance Instruktorin. Ich freue mich auf dich! Bis bald auf dem Dancefloor. 💃🕺
             </p>
 
             <div className="space-y-4">

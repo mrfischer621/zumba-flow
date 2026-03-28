@@ -38,7 +38,7 @@ const ClassSchedule = () => {
             <span className="text-gradient-zumba">Wochenplan</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Direkt in der App anmelden. Weitere Kursdaten in Bearbeitung.
+            Melde dich einfach via WhatsApp an, direkt über den Button beim Kurs.
           </p>
         </motion.div>
 
@@ -59,18 +59,18 @@ const ClassSchedule = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-bold font-display">{cls.type}</h3>
-                    <p className="text-primary font-semibold text-lg">{cls.day}</p>
+                    <p className="text-primary font-semibold text-lg">Jeden {cls.day}</p>
                   </div>
                   <button
                     onClick={() => setIsModalOpen(true)}
                     className="gradient-zumba-party px-5 py-2 rounded-full text-primary-foreground font-display font-bold text-sm hover:scale-105 transition-transform shadow-glow"
                   >
-                    Anmelden
+                    Probelektion buchen
                   </button>
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-4">
-                  Zumba® ist ein lateinamerikanisch inspiriertes Tanz-Fitness-Workout, das einfache Choreografien mit mitreissender Musik verbindet – perfekt für alle, die Spass an Bewegung haben. Keine Vorkenntnisse nötig!
+                  Zumba® ist ein lateinamerikanisch inspiriertes Tanz-Fitness-Workout, das einfache Choreografien mit mitreissender Musik verbindet. Perfekt für alle, die Spass an Bewegung haben. Keine Vorkenntnisse nötig!
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">

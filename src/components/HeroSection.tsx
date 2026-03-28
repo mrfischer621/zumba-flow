@@ -27,7 +27,7 @@ const HeroSection = () => {
             <span className="text-primary-foreground/90">mit Energie</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80 font-body max-w-3xl mx-auto mb-8">
-            Deine wöchentliche Zumba-Stunde in Flaach – mit Musik, Bewegung und guter Laune.
+            Deine wöchentliche Zumba-Stunde in Flaach, mit Musik, Bewegung und guter Laune.
           </p>
         </motion.div>
 

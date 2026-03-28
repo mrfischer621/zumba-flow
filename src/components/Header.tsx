@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import EnrollmentModal from "./EnrollmentModal";
 
 const navLinks = [
   { label: "Wochenplan", href: "#schedule" },
@@ -13,6 +14,7 @@ const navLinks = [
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,6 +29,7 @@ const Header = () => {
   };
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
@@ -42,9 +45,8 @@ const Header = () => {
           className="font-display font-black text-xl uppercase tracking-tight"
         >
           <span className="text-gradient-zumba">Groupfitness</span>
-          <span className={`ml-1 transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
-            by Katja
-          </span>
+          <span className={`ml-1 font-handwritten text-lg font-light tracking-wider normal-case transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>by</span>
+          <span className={`ml-1 font-handwritten text-lg font-light tracking-wider normal-case transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>Katja</span>
         </a>
 
         {/* Desktop Navigation */}
@@ -61,13 +63,12 @@ const Header = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="#schedule"
-            onClick={(e) => { e.preventDefault(); handleNavClick("#schedule"); }}
+          <button
+            onClick={() => setIsModalOpen(true)}
             className="ml-2 gradient-zumba px-5 py-2 rounded-full text-sm font-display font-bold text-primary-foreground shadow-glow hover:scale-105 transition-transform"
           >
-            Anmelden
-          </a>
+            Probelektion buchen
+          </button>
         </nav>
 
         {/* Mobile Hamburger */}
@@ -103,18 +104,20 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#schedule"
-                onClick={(e) => { e.preventDefault(); handleNavClick("#schedule"); }}
-                className="mt-2 gradient-zumba px-5 py-3 rounded-full text-sm font-display font-bold text-primary-foreground text-center shadow-glow"
+              <button
+                onClick={() => { setMenuOpen(false); setIsModalOpen(true); }}
+                className="mt-2 gradient-zumba px-5 py-3 rounded-full text-sm font-display font-bold text-primary-foreground text-center shadow-glow w-full"
               >
-                Jetzt anmelden
-              </a>
+                Probelektion buchen
+              </button>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
+
+    <EnrollmentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 };
 
