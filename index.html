@@ -19,17 +19,19 @@
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
-      script-src 'self';
+      script-src 'self' https://cloud.umami.is;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       img-src 'self' data: blob: https:;
       font-src 'self' data: https://fonts.gstatic.com;
       frame-src https://www.google.com;
-      connect-src 'self' https://*.supabase.co;
+      connect-src 'self' https://*.supabase.co https://cloud.umami.is;
       media-src 'self';
       object-src 'none';
       base-uri 'self';
       form-action 'self'
     " />
+    <!-- Umami Analytics -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="8f8d68f2-8d6c-4ed0-b8a7-c28480221f4d"></script>
   </head>
 
   <body>
