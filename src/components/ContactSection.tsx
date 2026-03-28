@@ -9,6 +9,8 @@ import { MessageCircle, Instagram, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
 
+const PHONE_REGEX = /^\+?[\d\s\-\(\)]{7,20}$/;
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", mobile: "", message: "" });
   const [sending, setSending] = useState(false);
@@ -17,6 +19,10 @@ const ContactSection = () => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.mobile.trim() || !formData.message.trim()) {
       toast({ title: "Bitte fülle alle Pflichtfelder aus.", variant: "destructive" });
+      return;
+    }
+    if (!PHONE_REGEX.test(formData.mobile.trim())) {
+      toast({ title: "Bitte gib eine gültige Mobilnummer ein.", variant: "destructive" });
       return;
     }
     const text = encodeURIComponent(
@@ -114,6 +120,7 @@ const ContactSection = () => {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
               </div>
 
