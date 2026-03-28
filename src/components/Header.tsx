@@ -6,7 +6,6 @@ const navLinks = [
   { label: "Wochenplan", href: "#schedule" },
   { label: "Preise", href: "#pricing" },
   { label: "Bring a Friend", href: "#bring-a-friend" },
-  { label: "Zahlungsarten", href: "#payment" },
   { label: "Events", href: "#events" },
   { label: "Kontakt", href: "#contact" },
 ];
