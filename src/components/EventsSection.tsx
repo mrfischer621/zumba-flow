@@ -3,16 +3,6 @@ import { PartyPopper, MapPin, Calendar, ExternalLink } from "lucide-react";
 
 const events = [
   {
-    title: "Zumba® Fitnessparty Schaffhausen",
-    date: "Donnerstag, 16. April 2026",
-    time: "19:00 - 22:00",
-    location: "Klub8, Schaffhausen",
-    description:
-      "Zumba® Party mit heissen Beats und purer Tanzfreude! Mit Viva, Manu, Ezgi und Yered. Für alle Levels geeignet.",
-    type: "external" as const,
-    link: "https://eventfrog.ch/de/p/sport-fitness/tanzsport/zumba-fitnessparty-7421292383633964037.html",
-  },
-  {
     title: "Zumbathon® Charity Event Rafz",
     date: "Sonntag, 14. Juni 2026",
     time: "10:30 - 13:30",
