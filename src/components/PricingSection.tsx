@@ -47,7 +47,7 @@ const PricingSection = () => {
           className="text-center mb-12"
         >
           <h2 id="pricing-title" className="text-4xl md:text-5xl font-black font-display uppercase mb-4">
-            <span className="text-gradient-zumba">Preise & Abos</span>
+            <span className="text-gradient-zumba">Preise & Abos in Flaach</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Wähle das passende Angebot für dich

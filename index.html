@@ -1,41 +1,108 @@
 <!doctype html>
-<html lang="en">
+<html lang="de-CH">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💃</text></svg>" />
-    <title>Groupfitness by Katja | Zumba Classes</title>
-    <meta name="description" content="Join vibrant Zumba fitness classes with Katja. Register, manage your membership, and pay online." />
+
+    <!-- Primary Meta Tags -->
+    <title>Zumba Flaach – Gruppenfitness mit Katja | Zürcher Weinland</title>
+    <meta name="description" content="Wöchentliche Zumba-Kurse in Flaach (Zürcher Weinland) mit Katja Zumsteg. Für alle Fitnessstufen. Jeden Donnerstag 19:00 Uhr in der Turnhalle Primarschulhaus. Probelektion ab CHF 10." />
     <meta name="author" content="Katja Zumsteg" />
+    <!-- TODO: DEINE-DOMAIN.ch durch die echte Domain ersetzen (Suchen & Ersetzen im gesamten File) -->
+    <link rel="canonical" href="https://gruppenfitness.ch/" />
 
-    <meta property="og:title" content="Groupfitness by Katja" />
-    <meta property="og:description" content="Join vibrant Zumba fitness classes with Katja. Register, manage your membership, and pay online." />
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://gruppenfitness.ch/" />
+    <meta property="og:title" content="Zumba Flaach – Gruppenfitness mit Katja" />
+    <meta property="og:description" content="Wöchentliche Zumba-Kurse in Flaach (Zürcher Weinland). Für alle Fitnessstufen. Probelektion ab CHF 10." />
+    <meta property="og:image" content="https://gruppenfitness.ch/og-image.jpg" />
+    <meta property="og:locale" content="de_CH" />
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="Zumba Flaach – Gruppenfitness mit Katja" />
+    <meta name="twitter:description" content="Wöchentliche Zumba-Kurse in Flaach, Zürcher Weinland. Probelektion ab CHF 10." />
+    <meta name="twitter:image" content="https://gruppenfitness.ch/og-image.jpg" />
+
+    <!-- Google Search Console Verification -->
+    <!-- TODO: Nach GSC-Property-Einrichtung den Meta-Tag von Google hier einfügen: -->
+    <!-- <meta name="google-site-verification" content="DEIN-VERIFICATION-CODE" /> -->
+
+    <!-- Structured Data: LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Groupfitness by Katja",
+      "description": "Zumba® und Gruppenfitness Kurse in Flaach, Zürcher Weinland. Leitung: Katja Zumsteg, zertifizierte Zumba® und Les Mills® Instruktorin.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Schulhausstrasse 5b",
+        "addressLocality": "Flaach",
+        "postalCode": "8416",
+        "addressRegion": "ZH",
+        "addressCountry": "CH"
+      },
+      "telephone": "+41772325777",
+      "url": "https://gruppenfitness.ch",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.5697,
+        "longitude": 8.5986
+      },
+      "areaServed": [
+        "Flaach", "Andelfingen", "Marthalen", "Berg am Irchel",
+        "Buch am Irchel", "Oerlingen", "Ossingen", "Stammheim"
+      ],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Thursday",
+        "opens": "19:00",
+        "closes": "19:55"
+      }],
+      "priceRange": "CHF 10–25",
+      "sameAs": [
+        "https://www.instagram.com/groupfitness_by_katja/",
+        "https://www.zumba.com/de-DE/class_detail/cf4e5ba0-49b3-458c-9f70-05dd4072ea55"
+      ]
+    }
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PP78MN3S');</script>
+    <!-- End Google Tag Manager -->
 
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
-      script-src 'self' https://cloud.umami.is;
+      script-src 'self' 'unsafe-inline' https://cloud.umami.is https://www.googletagmanager.com https://www.google-analytics.com;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       img-src 'self' data: blob: https:;
       font-src 'self' data: https://fonts.gstatic.com;
-      frame-src https://www.google.com;
-      connect-src 'self' https://*.supabase.co https://cloud.umami.is https://api-gateway.umami.dev;
+      frame-src https://www.google.com https://www.googletagmanager.com;
+      connect-src 'self' https://*.supabase.co https://cloud.umami.is https://api-gateway.umami.dev https://www.google-analytics.com https://www.googletagmanager.com;
       media-src 'self';
       object-src 'none';
       base-uri 'self';
       form-action 'self'
     " />
+
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="8f8d68f2-8d6c-4ed0-b8a7-c28480221f4d"></script>
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PP78MN3S"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -22,6 +22,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display uppercase tracking-tight text-primary-foreground mb-4">
+            <span className="block text-sm sm:text-base font-bold tracking-[0.25em] mb-3 text-primary-foreground/75 normal-case">
+              Zumba® in Flaach · Zürcher Weinland
+            </span>
             <span className="text-primary-foreground">Musik an. Kopf aus.</span>
             <br />
             <span className="text-gradient-zumba">Tanzen.</span>

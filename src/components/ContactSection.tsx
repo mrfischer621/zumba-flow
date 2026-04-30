@@ -44,7 +44,7 @@ const ContactSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-            Kontakt <span className="text-primary">aufnehmen</span>
+            Zumba in Flaach – <span className="text-primary">Kontakt</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Hast du Fragen? Melde dich bei mir!

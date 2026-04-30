@@ -35,7 +35,7 @@ const ClassSchedule = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-black font-display uppercase mb-4">
-            <span className="text-gradient-zumba">Wochenplan</span>
+            <span className="text-gradient-zumba">Zumba-Kursplan in Flaach</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Melde dich einfach via WhatsApp an, direkt über den Button beim Kurs.
