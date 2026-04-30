@@ -65,9 +65,12 @@ const ContactSection = () => {
               <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-glow">
                 <img
                   src={katjaProfile}
-                  alt="Katja Zumsteg, Zumba® Instructorin"
+                  alt="Katja Zumsteg, Zumba® und Les Mills® Instruktorin in Flaach"
                   className="w-full h-full object-cover scale-[1.3]"
                   style={{ objectPosition: "50% 20%" }}
+                  loading="lazy"
+                  width={144}
+                  height={144}
                 />
               </div>
             </div>

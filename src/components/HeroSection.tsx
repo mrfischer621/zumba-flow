@@ -8,8 +8,12 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Gruppenfitness Klasse mit vibranten Farben und energischer Atmosphäre"
+          alt="Zumba-Kurs in Flaach – Gruppenfitness mit Katja im Zürcher Weinland"
           className="w-full h-full object-cover object-[center_20%] sm:object-[center_30%]"
+          fetchPriority="high"
+          loading="eager"
+          width={1920}
+          height={1080}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/30 to-background/90" />
       </div>

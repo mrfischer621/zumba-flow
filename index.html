@@ -3,15 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <!-- Font Preconnect (lädt Google Fonts früher → besserer LCP) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cloud.umami.is" />
 
     <!-- Primary Meta Tags -->
     <title>Zumba Flaach – Gruppenfitness mit Katja | Zürcher Weinland</title>
     <meta name="description" content="Wöchentliche Zumba-Kurse in Flaach (Zürcher Weinland) mit Katja Zumsteg. Für alle Fitnessstufen. Jeden Donnerstag 19:00 Uhr in der Turnhalle Primarschulhaus. Probelektion ab CHF 10." />
     <meta name="author" content="Katja Zumsteg" />
-    <!-- TODO: DEINE-DOMAIN.ch durch die echte Domain ersetzen (Suchen & Ersetzen im gesamten File) -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f8997c" />
     <link rel="canonical" href="https://gruppenfitness.ch/" />
+
+    <!-- Geo Meta Tags (Bing, lokale Verzeichnisse) -->
+    <meta name="geo.region" content="CH-ZH" />
+    <meta name="geo.placename" content="Flaach, Zürcher Weinland" />
+    <meta name="geo.position" content="47.5697;8.5986" />
+    <meta name="ICBM" content="47.5697, 8.5986" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -31,11 +45,11 @@
     <!-- TODO: Nach GSC-Property-Einrichtung den Meta-Tag von Google hier einfügen: -->
     <!-- <meta name="google-site-verification" content="DEIN-VERIFICATION-CODE" /> -->
 
-    <!-- Structured Data: LocalBusiness -->
+    <!-- Structured Data: LocalBusiness + SportsActivityLocation -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "SportsActivityLocation"],
       "name": "Groupfitness by Katja",
       "description": "Zumba® und Gruppenfitness Kurse in Flaach, Zürcher Weinland. Leitung: Katja Zumsteg, zertifizierte Zumba® und Les Mills® Instruktorin.",
       "address": {
@@ -68,6 +82,65 @@
         "https://www.instagram.com/groupfitness_by_katja/",
         "https://www.zumba.com/de-DE/class_detail/cf4e5ba0-49b3-458c-9f70-05dd4072ea55"
       ]
+    }
+    </script>
+
+    <!-- Structured Data: Person (Katja Zumsteg) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Katja Zumsteg",
+      "jobTitle": "Zumba® und Les Mills® Instruktorin",
+      "worksFor": {
+        "@type": "LocalBusiness",
+        "name": "Groupfitness by Katja",
+        "url": "https://gruppenfitness.ch"
+      },
+      "url": "https://gruppenfitness.ch",
+      "sameAs": [
+        "https://www.instagram.com/groupfitness_by_katja/",
+        "https://www.zumba.com/de-DE/class_detail/cf4e5ba0-49b3-458c-9f70-05dd4072ea55"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Course (wöchentlicher Zumba-Kurs) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Zumba® Kurs Flaach",
+      "description": "Wöchentlicher Zumba® Kurs in Flaach (Zürcher Weinland). Jeden Donnerstag 19:00–19:55 Uhr in der Turnhalle Primarschulhaus. Für alle Fitnessstufen, keine Vorkenntnisse nötig.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Groupfitness by Katja",
+        "url": "https://gruppenfitness.ch"
+      },
+      "instructor": {
+        "@type": "Person",
+        "name": "Katja Zumsteg"
+      },
+      "courseMode": "onsite",
+      "inLanguage": "de-CH",
+      "locationCreated": {
+        "@type": "Place",
+        "name": "Turnhalle Primarschulhaus Flaach",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Schulhausstrasse 5b",
+          "addressLocality": "Flaach",
+          "postalCode": "8416",
+          "addressCountry": "CH"
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "10",
+        "priceCurrency": "CHF",
+        "description": "Probelektion",
+        "url": "https://gruppenfitness.ch/#schedule"
+      }
     }
     </script>
 
