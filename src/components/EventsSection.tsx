@@ -1,6 +1,18 @@
 import { motion } from "framer-motion";
 import { PartyPopper, MapPin, Calendar, ExternalLink } from "lucide-react";
 
+type EventType = "special" | "external";
+
+interface EventItem {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  type: EventType;
+  link?: string;
+}
+
 const events: EventItem[] = [];
 
 const typeBadge = {
