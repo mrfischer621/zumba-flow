@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
 import { PartyPopper, MapPin, Calendar, ExternalLink } from "lucide-react";
 
-const events = [
-  {
-    title: "Zumbathon® Charity Event Rafz",
-    date: "Sonntag, 14. Juni 2026",
-    time: "10:30 - 13:30",
-    location: "Rafz",
-    description:
-      "Gemeinsam tanzen für den guten Zweck! Beim Zumbathon® Charity Event erwartet dich eine unvergessliche Zumba® Party mit mehreren Instruktor:innen.",
-    type: "external" as const,
-    link: "https://eventfrog.ch/de/p/sport-fitness/tanzsport/zumbathon-charity-event-zurich-7431358506299612636.html",
-  },
-];
+type EventType = "special" | "external";
+
+interface EventItem {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  type: EventType;
+  link?: string;
+}
+
+const events: EventItem[] = [];
 
 const typeBadge = {
   special: { label: "Special", className: "gradient-zumba text-primary-foreground" },
