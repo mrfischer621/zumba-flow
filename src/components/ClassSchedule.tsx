@@ -68,6 +68,11 @@ const ClassSchedule = () => {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
+                    {cls.badge && (
+                      <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-bold gradient-zumba-party text-primary-foreground">
+                        {cls.badge}
+                      </span>
+                    )}
                     <h3 className="text-2xl font-bold font-display">{cls.type}</h3>
                     <p className="text-primary font-semibold text-lg">Jeden {cls.day}</p>
                   </div>
