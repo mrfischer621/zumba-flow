@@ -116,6 +116,7 @@ const ClassSchedule = () => {
       <EnrollmentModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        classDay={modalClassDay}
       />
     </section>
   );
