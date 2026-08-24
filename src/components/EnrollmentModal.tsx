@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Check, Download, MessageCircle } from "lucide-react";
-import { format, addDays, isThursday, isWithinInterval, parseISO } from "date-fns";
+import { format, addDays, isWithinInterval, parseISO } from "date-fns";
 import { de } from "date-fns/locale";
 
 // School holidays Schulgemeinde Flaach (Turnhalle closed)
@@ -22,6 +22,36 @@ const publicHolidays: string[] = [
   "2027-01-01", "2027-03-25", "2027-05-06",
 ];
 
+interface ClassConfig {
+  weekday: number; // 0=Sun ... 6=Sat
+  earliestStart?: string; // ISO date — class only runs from this date onward
+  startHour: number;
+  startMin: number;
+  endHour: number;
+  endMin: number;
+  subtitle: string;
+}
+
+const classConfigs: Record<string, ClassConfig> = {
+  Montag: {
+    weekday: 1,
+    earliestStart: "2026-09-07", // Neu ab September 2026
+    startHour: 20,
+    startMin: 15,
+    endHour: 21,
+    endMin: 10,
+    subtitle: "Montag, 20:15 bis 21:10 · CHF 10",
+  },
+  Donnerstag: {
+    weekday: 4,
+    startHour: 19,
+    startMin: 0,
+    endHour: 19,
+    endMin: 55,
+    subtitle: "Donnerstag, 19:00 bis 19:55 · CHF 10",
+  },
+};
+
 function isInSchoolHoliday(date: Date): boolean {
   return schoolHolidays.some(({ start, end }) =>
     isWithinInterval(date, { start: parseISO(start), end: parseISO(end) })
@@ -32,23 +62,26 @@ function isPublicHoliday(date: Date): boolean {
   return publicHolidays.includes(format(date, "yyyy-MM-dd"));
 }
 
-function getAvailableThursdays(): Date[] {
+function getAvailableDates(config: ClassConfig): Date[] {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   let current = new Date(today);
-  while (!isThursday(current)) current = addDays(current, 1);
+  if (config.earliestStart && current < parseISO(config.earliestStart)) {
+    current = parseISO(config.earliestStart);
+  }
+  while (current.getDay() !== config.weekday) current = addDays(current, 1);
 
-  const thursdays: Date[] = [];
+  const dates: Date[] = [];
   for (let i = 0; i < 52; i++) {
-    const thursday = addDays(current, i * 7);
-    if (!isInSchoolHoliday(thursday) && !isPublicHoliday(thursday)) {
-      thursdays.push(thursday);
+    const date = addDays(current, i * 7);
+    if (!isInSchoolHoliday(date) && !isPublicHoliday(date)) {
+      dates.push(date);
     }
   }
-  return thursdays;
+  return dates;
 }
 
-function generateICS(dates: Date[]): string {
+function generateICS(dates: Date[], config: ClassConfig): string {
   const formatICSDate = (d: Date, hours: number, minutes: number) => {
     const y = d.getFullYear();
     const m = String(d.getMonth() + 1).padStart(2, "0");
@@ -57,14 +90,14 @@ function generateICS(dates: Date[]): string {
   };
 
   const events = dates.map((date) => {
-    const uid = `zumba-${format(date, "yyyyMMdd")}@zumba-flaach`;
+    const uid = `zumba-${format(date, "yyyyMMdd")}-@zumba-flaach`;
     return [
       "BEGIN:VEVENT",
-      `DTSTART:${formatICSDate(date, 19, 0)}`,
-      `DTEND:${formatICSDate(date, 19, 55)}`,
+      `DTSTART:${formatICSDate(date, config.startHour, config.startMin)}`,
+      `DTEND:${formatICSDate(date, config.endHour, config.endMin)}`,
       `SUMMARY:Zumba® Kurs`,
-       `LOCATION:Turnhalle Primarschulhaus\\, Schulhausstrasse 5b\\, 8416 Flaach`,
-       `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Schulhausstrasse 5b\\, 8416 Flaach;X-APPLE-RADIUS=70;X-TITLE=Turnhalle Primarschulhaus:geo:47.5697,8.5986`,
+      `LOCATION:Turnhalle Primarschulhaus\\, Schulhausstrasse 5b\\, 8416 Flaach`,
+      `X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Schulhausstrasse 5b\\, 8416 Flaach;X-APPLE-RADIUS=70;X-TITLE=Turnhalle Primarschulhaus:geo:47.5697,8.5986`,
       `DESCRIPTION:Zumba® Kurs mit Katja. Bitte mitbringen: Turnschuhe\\, Handtuch & Trinkflasche`,
       `UID:${uid}`,
       "END:VEVENT",
@@ -81,8 +114,8 @@ function generateICS(dates: Date[]): string {
   ].join("\r\n");
 }
 
-function downloadICS(dates: Date[]) {
-  const ics = generateICS(dates);
+function downloadICS(dates: Date[], config: ClassConfig) {
+  const ics = generateICS(dates, config);
   const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -102,14 +135,16 @@ type Step = "dates" | "done";
 interface EnrollmentModalProps {
   isOpen: boolean;
   onClose: () => void;
+  classDay?: "Montag" | "Donnerstag";
 }
 
-const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
+const EnrollmentModal = ({ isOpen, onClose, classDay = "Donnerstag" }: EnrollmentModalProps) => {
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [step, setStep] = useState<Step>("dates");
   const [name, setName] = useState("");
 
-  const availableThursdays = useMemo(() => getAvailableThursdays(), []);
+  const config = classConfigs[classDay] ?? classConfigs.Donnerstag;
+  const availableDates = useMemo(() => getAvailableDates(config), [config]);
 
   const toggleDate = (date: Date) => {
     setSelectedDates((prev) => {
@@ -122,7 +157,7 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
     const date = selectedDates[0];
     const dateStr = format(date, "EEEE, d. MMMM yyyy", { locale: de });
 
-    const message = `Hallo Katja! Ich möchte die Probelektion buchen.\n\nName: ${name.trim()}\nWunschtermin: ${dateStr}`;
+    const message = `Hallo Katja! Ich möchte die Probelektion buchen.\n\nName: ${name.trim()}\nKurs: ${classDay}\nWunschtermin: ${dateStr}`;
 
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/41772325777?text=${encoded}`, "_blank", "noopener,noreferrer");
@@ -132,7 +167,7 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
   const handleCalendarExport = () => {
     if (selectedDates.length > 0) {
       const sorted = [...selectedDates].sort((a, b) => a.getTime() - b.getTime());
-      downloadICS(sorted);
+      downloadICS(sorted, config);
     }
   };
 
@@ -169,7 +204,7 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
                   {step === "dates" ? "Probelektion buchen" : "Anfrage abgeschickt!"}
                 </h3>
                 {step === "dates" && (
-                  <p className="text-primary-foreground/80 text-sm">Donnerstag, 19:00 bis 19:55 · CHF 10</p>
+                  <p className="text-primary-foreground/80 text-sm">{config.subtitle}</p>
                 )}
               </div>
               <button
@@ -247,7 +282,7 @@ const EnrollmentModal = ({ isOpen, onClose }: EnrollmentModalProps) => {
                       </p>
                     </div>
                     <div className="space-y-2 overflow-y-auto px-5 pb-2 flex-1 min-h-0">
-                      {availableThursdays.map((date) => {
+                      {availableDates.map((date) => {
                         const isSelected = selectedDates.some(
                           (d) => d.getTime() === date.getTime()
                         );
