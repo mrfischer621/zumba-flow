@@ -34,6 +34,7 @@ const colorMap: Record<string, string> = {
 
 const ClassSchedule = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalClassDay, setModalClassDay] = useState<"Montag" | "Donnerstag">("Donnerstag");
 
   return (
     <section id="schedule" className="py-20 px-4">
