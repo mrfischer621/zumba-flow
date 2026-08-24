@@ -78,7 +78,10 @@ const ClassSchedule = () => {
                     <p className="text-primary font-semibold text-lg">Jeden {cls.day}</p>
                   </div>
                   <button
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => {
+                      setModalClassDay(cls.day as "Montag" | "Donnerstag");
+                      setIsModalOpen(true);
+                    }}
                     className="gradient-zumba-party px-5 py-2 rounded-full text-primary-foreground font-display font-bold text-sm hover:scale-105 transition-transform shadow-glow"
                   >
                     Probelektion buchen
