@@ -5,6 +5,16 @@ import EnrollmentModal from "./EnrollmentModal";
 
 const classes = [
   {
+    day: "Montag",
+    time: "20:15 - 21:10",
+    type: "Zumba®",
+    location: "Turnhalle Primarschulhaus, 8416 Flaach",
+    spotsLeft: 20,
+    totalSpots: 20,
+    color: "primary",
+    badge: "Neu ab September 2026",
+  },
+  {
     day: "Donnerstag",
     time: "19:00 - 19:55",
     type: "Zumba®",
